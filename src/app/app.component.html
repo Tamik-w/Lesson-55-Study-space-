@@ -13,6 +13,9 @@
       <label for="email">Email</label>
       <input id="email" placeholder="Your email..." name="email" formControlName="email">
       <p *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched">Enter correct email</p> 
+      <p *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched && userForm.controls['email'].pending">Checking email...</p>
+      <p *ngIf="userForm.controls['email'].errors?.['uniqEmail']">This email address already exists</p>
+  
     </div>
     <div class="form-item">
       <label for="password">Password</label>
