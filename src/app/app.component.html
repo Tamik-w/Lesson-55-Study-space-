@@ -1,25 +1,25 @@
 <div class="wrapper">
-  <form (ngSubmit)="submit(user)" #user="ngForm">
-      <div class="form-item">
-          <label for="login">Login</label>
-          <input placeholder="Your Login..." name="name" #name="ngModel" ngModel required minlength="2" pattern="[a-z A-Z]+$">
-        <p *ngIf="name.invalid && name.touched && name.errors?.['required']">The field must not be empty</p>
-        <p *ngIf="name.invalid && name.touched && name.errors?.['minlength']">
-            The name must contain more than {{name.errors?.['minlength']['requiredLength']}} characters.
-        </p>
-        <p *ngIf="name.invalid && name.touched && name.errors?.['pattern']">Only latin letters are allowed</p>
-        </div>
-      <div class="form-item">
-          <label for="email">Email</label>
-          <input id="email" placeholder="Your email..." name="email" ngModel #email="ngModel" required email>
-          <p *ngIf="email.invalid && email.touched">Enter correct email</p> 
-      </div>
-      <div class="form-item">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Your password..." name="password" ngModel #password="ngModel" required minlength="7" password>
-        <p *ngIf="password.invalid && password.touched && password.errors?.['required']">The field must not be empty</p>
-        <p *ngIf="password.invalid && password.touched && password.errors?.['minlength']">The password must contain more than {{password.errors?.['minlength']['requiredLength']}} characters.</p>
-      </div>
-      <button type="submit">Submit</button>
+  <form [formGroup]="userForm" (ngSubmit)="submit()">
+    <div class="form-item">
+      <label for="login">Login</label>
+      <input placeholder="Your Login..." name="name" formControlName="name">
+      <p *ngIf="userForm.controls['name'].invalid && userForm.controls['name'].touched && userForm.controls['name'].errors?.['required']">The field must not be empty</p>
+      <p *ngIf="userForm.controls['name'].invalid && userForm.controls['name'].touched && userForm.controls['name'].errors?.['minlength']">
+        The name must contain more than {{userForm.controls['name'].errors?.['minlength']['requiredLength']}} characters.
+      </p>
+      <p *ngIf="userForm.controls['name'].invalid && userForm.controls['name'].touched && userForm.controls['name'].errors?.['pattern']">Only latin letters are allowed</p>
+    </div>
+    <div class="form-item">
+      <label for="email">Email</label>
+      <input id="email" placeholder="Your email..." name="email" formControlName="email">
+      <p *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched">Enter correct email</p> 
+    </div>
+    <div class="form-item">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Your password..." name="password" formControlName="password">
+      <p *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].touched && userForm.controls['password'].errors?.['required']">The field must not be empty</p>
+      <p *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].touched && userForm.controls['password'].errors?.['minlength']">The password must contain more than {{userForm.controls['password'].errors?.['minlength']['requiredLength']}} characters.</p>
+    </div>
+    <button type="submit">Submit</button>
   </form>
 </div>
